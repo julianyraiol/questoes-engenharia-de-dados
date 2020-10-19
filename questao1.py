@@ -1,13 +1,26 @@
-def median(matriz):
-    size = len(matriz)
-
-    if size%2 == 1:
-        middle = size//2
-        return matriz[middle]
+def median(array):
+    size = len(array)
+    if size % 2 == 1:
+        middle = size // 2
+        return array[middle]
     else:
         middle = size // 2
-        return (matriz[middle-1] + matriz[middle])/2
+        return (array[middle - 1] + array[middle]) / 2
 
 
-matriz = [1,2,3,4,5,6]
-print(median(matriz))
+def read_file():
+
+    try:
+        numbers = []
+        with open('in.txt', 'r') as file_in:
+            contents = file_in.read()
+            numbers += [int(x) for x in contents.split()]
+        return numbers
+    except:
+        raise Exception('Não foi possível processar mediana')
+
+
+if __name__ == "__main__":
+    array = read_file()
+    array.sort()
+    print("A mediana desse conjunto de dados é: ", median(array))
